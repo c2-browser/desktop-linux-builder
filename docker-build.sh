@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-GIT_SUBMODULE="ungoogled-chromium"
+GIT_SUBMODULE="desktop"
 
 BUILDER_DISTRO="noble"
 
@@ -22,4 +22,3 @@ cd ${BASE_DIR} && docker run -it -v ${BASE_DIR}:/repo ${IMAGE} /bin/bash -c "/re
 BUILD_END=$(date)
 echo -e " => docker build start at ${BUILD_START}"
 echo -e " =>                end at ${BUILD_END}"
-

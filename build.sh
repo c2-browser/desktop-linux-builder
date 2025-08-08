@@ -11,7 +11,7 @@ done
 # directories
 # ==================================================
 root_dir="$(dirname $(readlink -f $0))"
-main_repo="${root_dir}/ungoogled-chromium"
+main_repo="${root_dir}/desktop"
 
 build_dir="${root_dir}/build"
 download_cache="${build_dir}/download_cache"
@@ -20,7 +20,7 @@ src_dir="${build_dir}/src"
 # clean
 # ==================================================
 echo "cleaning up directories"
-rm -rf "${src_dir}" "${build_dir}/domsubcache.tar.gz" 
+rm -rf "${src_dir}" "${build_dir}/domsubcache.tar.gz"
 mkdir -p "${src_dir}" "${download_cache}"
 
 ## fetch sources
@@ -52,7 +52,7 @@ patch -Np1 -i ${root_dir}/drop-nodejs-version-check.patch
 # combine local and ungoogled-chromium gn flags
 cat "${main_repo}/flags.gn" "${root_dir}/flags.gn" >"${src_dir}/out/Default/args.gn"
 
-# adjust host name to download prebuilt tools below and sysroot files from 
+# adjust host name to download prebuilt tools below and sysroot files from
 # (see e.g. https://github.com/ungoogled-software/ungoogled-chromium/issues/1846)
 sed -i 's/commondatastorage.9oo91eapis.qjz9zk/commondatastorage.googleapis.com/g' ./build/linux/sysroot_scripts/sysroots.json
 sed -i 's/commondatastorage.9oo91eapis.qjz9zk/commondatastorage.googleapis.com/g' ./tools/clang/scripts/update.py

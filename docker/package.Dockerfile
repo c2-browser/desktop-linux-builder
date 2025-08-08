@@ -9,11 +9,15 @@ ARG DEBIAN_VER="bullseye-slim"
 FROM debian:${DEBIAN_VER}
 
 ## Set deb to non-interactive mode and upgrade packages
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && export DEBIAN_FRONTEND=noninteractive 
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && export DEBIAN_FRONTEND=noninteractive
 RUN apt -y update && apt -y upgrade
 
 ## Install system dependencies
 RUN apt -y install binutils desktop-file-utils dpkg file imagemagick wget xz-utils
+
+## Download and install appimagetool
+RUN wget -O /usr/local/bin/appimagetool https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage && \
+    chmod +x /usr/local/bin/appimagetool
 
 ## Create and set WORKDIR to mount in docker build
 RUN mkdir /repo
