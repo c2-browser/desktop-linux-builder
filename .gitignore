@@ -6,3 +6,6 @@
 *.AppImage
 *.AppImage.zsync
 *.log
+
+# Incremental build system persistent storage
+/.persistent/
